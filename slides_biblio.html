@@ -6,6 +6,8 @@
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/chocolate-fonts.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -32,8 +34,8 @@ class: about-me-slide, inverse, middle, center
 
 <div>
 <style type="text/css">.xaringan-extra-logo {
-width: 50px;
-height: 60px;
+width: 60px;
+height: 70px;
 z-index: 0;
 background-image: url(figs/R_MY.jpg);
 background-size: contain;
@@ -95,13 +97,13 @@ top:1em;right:1em;
 
 ## Bibliographic information
 
-&lt;img src="figs/paper-both.png" width="65%" /&gt;
+&lt;img src="figs/paper-both.png" width="76%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Type of analysis
 
-&lt;img src="figs/type_analysis.png" width="80%" /&gt;
+&lt;img src="figs/type_analysis.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle, center
@@ -113,20 +115,15 @@ background-color: white
 
 ## Data
 
-- Data was downloaded from the [Web of Science database](https://www.webofscience.com/wos/alldb/basic-search) through USM's access
-- Search terms used: 
-
-  _**(TI=(covid-19) OR TI=(covid 19) OR TI=(2019-nCov) OR TI=(SARS-CoV-2) OR TI=("2019 novel coronavirus") OR TI=("coronavirus**_ &lt;br&gt;
-  _**disease 2019") OR TI=("coronavirus disease-19")) AND (TI=(Malaysia))**_
-
+- Data was downloaded from the [Scopus](https://www.scopus.com/search/form.uri?display=basic&amp;clear=t&amp;origin=searchadvanced&amp;txGid=f676aa0f046baff36a28dd0a11c7427e#basic) through USM's access
+- Search terms used:  
+  _**(TITLE("covid-19") OR TITLE("covid 19") OR TITLE("2019-nCov") OR TITLE("SARS-CoV-2") OR TITLE("2019 novel coronavirus")&lt;br&gt; OR TITLE("coronavirus disease 2019") OR TITLE("coronavirus disease-19")) AND (TITLE-ABS-KEY(Malaysia))**_
 - The search result was further filtered into:
   1. Article
-  2. Review article
-  3. Clinical trial
-  4. Case report
-  5. Early access
-  6. Abstracts
-- Final data - 420 papers
+  2. Review 
+  3. Conference paper
+  4. data paper
+- Final data - 1,265 papers
 
 ---
 
@@ -142,12 +139,57 @@ library(bibliometrix)
 
 ## Read data
 
-- Data should downloaded in a plaintext format for Web of Science database
+Data should downloaded in a BibTex format for Scopus database
 
 
 ```r
-dat &lt;- convert2df("data/covid_msia.txt", dbsource = "wos", format = "plaintext")
+dat &lt;- convert2df("data/covid_msia.bib", dbsource = "scopus", format = "bibtex")
 ```
+
+## Descriptive
+
+
+```r
+res &lt;- biblioAnalysis(dat)
+summary(res, k = 10)
+```
+
+`k` reflects the number of results to be displayed. Since the result is too long, the output is available [here](https://tengku-hanis.github.io/add_rconf2022/).
+
+---
+
+## Basic plots
+
+
+
+
+```r
+plot(res, k = 10)
+```
+
+
+
+.panelset.sideways[
+.panel[.panel-name[**Plot 1**]
+&lt;img src="slides_biblio_files/figure-html/basic plots2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[**Plot 2**]
+&lt;img src="slides_biblio_files/figure-html/basic plots3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[**Plot 3**]
+&lt;img src="slides_biblio_files/figure-html/basic plots4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[**Plot 4**]
+&lt;img src="slides_biblio_files/figure-html/basic plots5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[**Plot 5**]
+&lt;img src="slides_biblio_files/figure-html/basic plots6-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+]
 
 ---
 
@@ -184,7 +226,7 @@ class: center, middle
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
-"ratio": "16:8"
+"ratio": "14:8"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

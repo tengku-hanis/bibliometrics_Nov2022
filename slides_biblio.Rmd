@@ -10,7 +10,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      ratio: "16:8"
+      ratio: "14:8"
 ---
 
 name: about-me
@@ -22,8 +22,8 @@ class: about-me-slide, inverse, middle, center
 ```{r R conf logo, echo=FALSE}
 xaringanExtra::use_logo(
   image_url = "figs/R_MY.jpg", 
-  width = "50px",
-  height = "60px"
+  width = "60px",
+  height = "70px"
 )
 ```
 
@@ -58,7 +58,7 @@ xaringanExtra::use_logo(
 
 ## Bibliographic information
 
-```{r biblio_info, echo=FALSE, fig.align='default', out.width='65%'}
+```{r biblio_info, echo=FALSE, fig.align='center', out.width='76%'}
 knitr::include_graphics("figs/paper-both.png")
 ```
 
@@ -66,7 +66,7 @@ knitr::include_graphics("figs/paper-both.png")
 
 ## Type of analysis
 
-```{r analysis, echo=FALSE, fig.align='default', out.width='80%'}
+```{r analysis, echo=FALSE, fig.align='center', out.width='90%'}
 knitr::include_graphics("figs/type_analysis.png")
 ```
 
@@ -80,20 +80,15 @@ background-color: white
 
 ## Data
 
-- Data was downloaded from the [Web of Science database](https://www.webofscience.com/wos/alldb/basic-search) through USM's access
-- Search terms used: 
-
-  _**(TI=(covid-19) OR TI=(covid 19) OR TI=(2019-nCov) OR TI=(SARS-CoV-2) OR TI=("2019 novel coronavirus") OR TI=("coronavirus**_ <br>
-  _**disease 2019") OR TI=("coronavirus disease-19")) AND (TI=(Malaysia))**_
-
+- Data was downloaded from the [Scopus](https://www.scopus.com/search/form.uri?display=basic&clear=t&origin=searchadvanced&txGid=f676aa0f046baff36a28dd0a11c7427e#basic) through USM's access
+- Search terms used:  
+  _**(TITLE("covid-19") OR TITLE("covid 19") OR TITLE("2019-nCov") OR TITLE("SARS-CoV-2") OR TITLE("2019 novel coronavirus")<br> OR TITLE("coronavirus disease 2019") OR TITLE("coronavirus disease-19")) AND (TITLE-ABS-KEY(Malaysia))**_
 - The search result was further filtered into:
   1. Article
-  2. Review article
-  3. Clinical trial
-  4. Case report
-  5. Early access
-  6. Abstracts
-- Final data - 420 papers
+  2. Review 
+  3. Conference paper
+  4. data paper
+- Final data - 1,265 papers
 
 ---
 
@@ -111,11 +106,70 @@ library(bibliometrix)
 
 ## Read data
 
-- Data should downloaded in a plaintext format for Web of Science database
+Data should downloaded in a BibTex format for Scopus database
 
 ```{r read data, eval=FALSE}
-dat <- convert2df("data/covid_msia.txt", dbsource = "wos", format = "plaintext")
+dat <- convert2df("data/covid_msia.bib", dbsource = "scopus", format = "bibtex")
 ```
+
+## Descriptive
+
+```{r descriptive, eval=FALSE}
+res <- biblioAnalysis(dat)
+summary(res, k = 10)
+```
+
+`k` reflects the number of results to be displayed. Since the result is too long, the output is available [here](https://tengku-hanis.github.io/add_rconf2022/).
+
+---
+
+## Basic plots
+
+```{r descriptive hidden, echo=FALSE, results='hide', fig.show='hide'}
+dat <- convert2df("data/covid_msia.bib", dbsource = "scopus", format = "bibtex")
+res <- biblioAnalysis(dat)
+bp <- plot(res, k = 10)
+```
+
+```{r basic plots1, echo=TRUE, eval=FALSE}
+plot(res, k = 10)
+```
+
+```{r panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+.panelset.sideways[
+.panel[.panel-name[**Plot 1**]
+```{r basic plots2, echo=FALSE, out.width='80%', fig.align='center'}
+bp$MostProdAuthors
+```
+]
+
+.panel[.panel-name[**Plot 2**]
+```{r basic plots3, echo=FALSE, out.width='80%', fig.align='center'}
+bp$MostProdCountries
+```
+]
+
+.panel[.panel-name[**Plot 3**]
+```{r basic plots4, echo=FALSE, out.width='80%', fig.align='center'}
+bp$AnnualScientProd
+```
+]
+
+.panel[.panel-name[**Plot 4**]
+```{r basic plots5, echo=FALSE, out.width='80%', fig.align='center'}
+bp$AverArtCitperYear
+```
+]
+
+.panel[.panel-name[**Plot 5**]
+```{r basic plots6, echo=FALSE, out.width='80%', fig.align='center'}
+bp$AverTotCitperYear
+```
+]
+]
 
 ---
 
