@@ -1,0 +1,149 @@
+---
+title: "Exploring past literature: <br>A bibliometric approach"
+subtitle: "R confeRence 2022"
+date: "November27, 2022"
+output:
+  xaringan::moon_reader:
+    css: [default, chocolate-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:8"
+---
+
+name: about-me
+layout: false
+class: about-me-slide, inverse, middle, center
+
+## About me
+
+```{r R conf logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "figs/R_MY.jpg", 
+  width = "50px",
+  height = "60px"
+)
+```
+
+<img style="border-radius: 50%;" src="figs/tengku_hanis.jpg" width="150px"/>
+
+### Tengku Muhammad Hanis Mokhtar
+
+#### MBBCh, MSc (Medical Statistics), <br>PhD Student (Public Health Epidemiology)
+
+.fade[Universiti Sains Malaysia<br>Kelantan, Malaysia]
+
+[`r fontawesome::fa("link")` tengkuhanis.netlify.app](https://tengkuhanis.netlify.app/)
+[`r fontawesome::fa("twitter", a11y = "sem")` @tmhanis](https://twitter.com/tmhanis)
+[`r fontawesome::fa("github", a11y = "sem")` @tengku-hanis](https://github.com/tengku-hanis)<br>
+[`r fontawesome::fa("linkedin", a11y = "sem")` @Tengku Muhammad Hanis](https://www.linkedin.com/in/tengku-muhammad-hanis-9a7222144/)
+
+---
+
+## What is biliometrics?
+
+- Basically, an analysis of bibliographic information
+- What we can do with bibliometric analysis:
+  - Evaluate research progress
+  - Quantitatively summarise research output
+  - "Mapping" research contributions by author, institution, etc
+  - Explore research trends
+- When to do a bibliometric?
+  - Too many literature
+  - The scope (research question) is broad
+  
+---
+
+## Bibliographic information
+
+```{r biblio_info, echo=FALSE, fig.align='default', out.width='65%'}
+knitr::include_graphics("figs/paper-both.png")
+```
+
+---
+
+## Type of analysis
+
+```{r analysis, echo=FALSE, fig.align='default', out.width='80%'}
+knitr::include_graphics("figs/type_analysis.png")
+```
+
+---
+class: middle, center
+background-color: white
+
+## Bibliometrics using bibliometrix
+
+---
+
+## Data
+
+- Data was downloaded from the [Web of Science database](https://www.webofscience.com/wos/alldb/basic-search) through USM's access
+- Search terms used: 
+
+  _**(TI=(covid-19) OR TI=(covid 19) OR TI=(2019-nCov) OR TI=(SARS-CoV-2) OR TI=("2019 novel coronavirus") OR TI=("coronavirus**_ <br>
+  _**disease 2019") OR TI=("coronavirus disease-19")) AND (TI=(Malaysia))**_
+
+- The search result was further filtered into:
+  1. Article
+  2. Review article
+  3. Clinical trial
+  4. Case report
+  5. Early access
+  6. Abstracts
+- Final data - 420 papers
+
+---
+
+## Load packages
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, tidy = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+library(bibliometrix)
+```
+
+## Read data
+
+- Data should downloaded in a plaintext format for Web of Science database
+
+```{r read data, eval=FALSE}
+dat <- convert2df("data/covid_msia.txt", dbsource = "wos", format = "plaintext")
+```
+
+---
+
+## Steps for bibliometric analysis
+
+1. Define scope, objectives and selection criteria 
+2. Specify techniques (based on objectives)
+3. Comes up with search terms - always check with the databases whether the terms valid or not
+4. Data searching on databases:
+  - SCOPUS, WOS, Digital Science Dimensions, PubMed, Lens or Cochrane
+5. Review downloaded data/abstracts if needed (brief review)
+6. Run bibliometric analysis and report finding
+
+
+---
+
+## References
+
+1. Donthu, N., Kumar, S., Mukherjee, D., Pandey, N., & Lim, W. M. (2021). How to conduct a bibliometric analysis: An overview and guidelines. Journal of Business Research, 133, 285–296. https://doi.org/10.1016/j.jbusres.2021.04.070
+2. Aria, M., & Cuccurullo, C. (2017). bibliometrix : An R-tool for comprehensive science mapping analysis. Journal of Informetrics, 11(4), 959–975. https://doi.org/10.1016/j.joi.2017.08.007 
+3. Hood, W.W., Wilson, C.S. The Literature of Bibliometrics, Scientometrics, and Informetrics. Scientometrics 52, 291 (2001). https://doi.org/10.1023/A:1017919924342 
+
+---
+class: center, middle
+
+# Thanks!
+```{r, echo=FALSE, out.width='15%', eval=FALSE}
+knitr::include_graphics("figs/R_MY.jpg")
+```
+
+.center[.footnote[`r fontawesome::fa("link")` Material: https://tinyurl.com/biblio-rconference2022]]

@@ -1,0 +1,58 @@
+---
+title: "Exploring past literatures: A bibliometric approach"
+author: "Tengku Muhd Hanis Mokhtar"
+institute: "PhD student, USM"
+date: "November27, 2022"
+format: 
+  revealjs:
+    theme: default
+title-slide-attributes:
+  data-background-color: lightblue
+  data-background-opacity: "0.5"
+editor: visual
+---
+
+## About me {background-image="background.png" background-size="contain"}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, tidy = TRUE)
+```
+
+::: columns
+::: {.column width="25%"}
+```{r echo=FALSE}
+knitr::include_graphics("tengku_hanis.jpg")
+```
+:::
+
+::: {.column width="75%"}
+Background:
+
+-   PhD student in Department of Community Medicine, USM
+-   MSc (Medical Statistics) from USM, 2019
+-   MBBCh from Al-Azhar University, 2015
+
+Interest:
+
+-   Medical statistics, population-based study
+-   Machine learning application in medical sciences
+-   Application of R (and Python) in medicine
+
+Contact me: - tengkuhanismokhtar\@gmail.com - Linkedin: Tengku Muhammad Hanis - Twitter: @tmhanis - Website: https://tengkuhanis.netlify.app/
+:::
+:::
+
+## Bullets {background-image="background.png"}
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code {background-image="background.png"}
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
