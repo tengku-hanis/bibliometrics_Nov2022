@@ -280,6 +280,14 @@ trend_kw$graph + theme_bw()
 
 ---
 
+## Biblioshiny
+
+```{r biblioshiny, echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("figs/biblioshiny.gif")
+```
+
+---
+
 ## Steps for bibliometric analysis
 
 1. Define scope, objectives and selection criteria 

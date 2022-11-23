@@ -171,23 +171,23 @@ plot(res, k = 10)
 
 .panelset.sideways[
 .panel[.panel-name[**Plot 1**]
-&lt;img src="slides_biblio_files/figure-html/basic plots2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/basic plots2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 .panel[.panel-name[**Plot 2**]
-&lt;img src="slides_biblio_files/figure-html/basic plots3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/basic plots3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 .panel[.panel-name[**Plot 3**]
-&lt;img src="slides_biblio_files/figure-html/basic plots4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/basic plots4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 .panel[.panel-name[**Plot 4**]
-&lt;img src="slides_biblio_files/figure-html/basic plots5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/basic plots5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 .panel[.panel-name[**Plot 5**]
-&lt;img src="slides_biblio_files/figure-html/basic plots6-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/basic plots6-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -208,7 +208,7 @@ int_collab &lt;- networkPlot(country_collab, n = 20, cluster = "louvain", Title 
     type = "circle", size.cex = T)
 ```
 
-&lt;img src="slides_biblio_files/figure-html/inst_collab1-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/inst_collab1-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -267,7 +267,7 @@ country_collab &lt;- networkPlot(country_collab, n = 30, cluster = "louvain", Ti
     type = "circle", size.cex = T)
 ```
 
-&lt;img src="slides_biblio_files/figure-html/country_collab1-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/country_collab1-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -354,7 +354,7 @@ ggplot(ldata, aes(N.Articles, val_distr, color = distribution)) + geom_line(line
     round(L$p.value, 3)), x = 12, y = 0.1, size = 4)
 ```
 
-&lt;img src="slides_biblio_files/figure-html/lotka3 hidden-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/lotka3 hidden-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 Lotka's law plot indicated that the observed distribution is significantly lower than the expected distribution.
 
@@ -369,7 +369,13 @@ trend_kw &lt;- fieldByYear(dat, field = "DE", timespan = c(2020, 2022), min.freq
 trend_kw$graph + theme_bw()
 ```
 
-&lt;img src="slides_biblio_files/figure-html/trending keywords-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/trending keywords-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Biblioshiny
+
+&lt;img src="figs/biblioshiny.gif" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
