@@ -2,7 +2,7 @@
 Title: An introduction to relative analysis using R   
 Date: 22-11-2020   
 Organiser: Malaysian R User Group (MyRUG)   
-Content:  
-1. Slides
-2. R script
+Content available in docs folder:  
+1. Slide
+2. Rmd file
 3. Data
