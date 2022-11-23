@@ -173,6 +173,87 @@ bp$AverTotCitperYear
 
 ---
 
+## Collaborations
+
+.panelset.sideways[
+.panel[.panel-name[Institutions]
+```{r collab plot1, out.width='45%', fig.align='center'}
+# Create network
+MT <- metaTagExtraction(dat, Field = "AU_CO", sep = ";")
+country_collab <- biblioNetwork(MT, analysis = "collaboration",  network = "universities")
+
+# Plot network
+set.seed(123)
+networkPlot(country_collab, n = 20, cluster = "none", Title = "Institutions collaboration", type = "circle", size.cex = T)
+```
+]
+
+.panel[.panel-name[Countries]
+```{r collab plot2, out.width='45%', fig.align='center'}
+# Create network
+country_collab <- biblioNetwork(MT, analysis = "collaboration",  network = "countries")
+
+# Plot network
+set.seed(123)
+networkPlot(country_collab, n = 20, cluster = "none", Title = "Countries collaboration", type = "circle", size.cex = T)
+```
+]
+]
+
+---
+
+## Lotka's law
+
+Lotka's law describe the scientific productivity in certain research area.
+
+```{r lotka}
+L <- lotka(res)
+L$p.value
+```
+
+Kolmogorov-Smirnov two sample test showed that there is a significant difference between the observed and theoretical distribution.
+
+We can further plot the two distributions.
+
+```{r lotka2}
+# Theoretical distribution with Beta = 2
+Theoretical <- 10^(log10(L$C)-2*log10(L$AuthorProd[,1]))
+
+# Data wrangling for plotting
+ldata <- 
+  L$AuthorProd %>% 
+  bind_cols(theory = Theoretical) %>% 
+  pivot_longer(cols = c(Freq, theory), names_to = "distribution", values_to = "val_distr") %>% 
+  mutate(distribution = as.factor(distribution), 
+         distribution = fct_recode(distribution, Observed = "Freq", Theoretical = "theory"))
+```
+
+---
+
+```{r lotka3 hidden, out.width='40%', fig.align='center'}
+ggplot(ldata, aes(N.Articles, val_distr, color = distribution)) +
+  geom_line(linewidth = 1) +
+  labs(color = "Distribution:") +
+  ylab("Frequency of authors") +
+  xlab("Number of articles") +
+  theme_minimal() +
+  theme(legend.position = "top") +
+  annotate("text", label = paste0("P-value = ", round(L$p.value, 3)), x = 12, y = 0.1, size = 4)
+```
+
+Lotka's law plot indicated that the observed distribution is significantly lower than the expected distribution.
+
+---
+
+## Trending keywords
+
+```{r trending keywords, out.width='40%', fig.align='center'}
+trend_kw <- fieldByYear(dat, field = "DE", timespan = c(2020,2022), min.freq = 5, n.items = 5, graph = FALSE) 
+trend_kw$graph + theme_bw()
+```
+
+---
+
 ## Steps for bibliometric analysis
 
 1. Define scope, objectives and selection criteria 
@@ -182,7 +263,6 @@ bp$AverTotCitperYear
   - SCOPUS, WOS, Digital Science Dimensions, PubMed, Lens or Cochrane
 5. Review downloaded data/abstracts if needed (brief review)
 6. Run bibliometric analysis and report finding
-
 
 ---
 
