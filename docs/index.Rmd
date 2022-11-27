@@ -42,6 +42,14 @@ xaringanExtra::use_logo(
 
 ---
 
+## Outline
+
+### - A bit about bibliometrics
+### - Demo in R (not live demo)
+### - Recap - brief step to do a bibliometric analysis
+
+---
+
 ## What is biliometrics?
 
 - Basically, an analysis of bibliographic information
@@ -53,6 +61,7 @@ xaringanExtra::use_logo(
 - When to do a bibliometric?
   - Too many literature
   - The scope (research question) is broad
+- A lot of papers available on [Google Scholar (>45K papers)](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=allintitle%3A+bibliometrics+OR+bibliometric&btnG=)
   
 ---
 
@@ -82,12 +91,12 @@ background-color: white
 
 - Data was downloaded from the [Scopus](https://www.scopus.com/search/form.uri?display=basic&clear=t&origin=searchadvanced&txGid=f676aa0f046baff36a28dd0a11c7427e#basic) through USM's access
 - Search terms used:  
-  _**(TITLE("covid-19") OR TITLE("covid 19") OR TITLE("2019-nCov") OR TITLE("SARS-CoV-2") OR TITLE("2019 novel coronavirus")<br> OR TITLE("coronavirus disease 2019") OR TITLE("coronavirus disease-19")) AND (TITLE-ABS-KEY(Malaysia))**_
+  _**(TITLE("covid-19") OR TITLE("covid 19") OR TITLE("2019-nCov") OR TITLE("SARS-CoV-2") OR TITLE("2019 novel coronavirus") OR TITLE("coronavirus disease 2019") OR TITLE("coronavirus disease-19")) AND (TITLE-ABS-KEY(Malaysia))**_
 - The search result was further filtered into:
   1. Article
   2. Review 
   3. Conference paper
-  4. data paper
+  4. Data paper
 - Final data - 1,265 papers
 
 ---
